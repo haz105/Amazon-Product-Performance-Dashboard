@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amazon Product Intelligence Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="dashboard-container">
+        <nav class="sidebar">
+            <div class="logo">
+                <i class="fas fa-chart-line"></i>
+                <h2>Intelligence</h2>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#" data-view="executive" class="nav-link active">
+                    <i class="fas fa-tachometer-alt"></i>Executive Summary
+                </a></li>
+                <li><a href="#" data-view="market" class="nav-link">
+                    <i class="fas fa-chart-bar"></i>Market Intelligence
+                </a></li>
+                <li><a href="#" data-view="opportunities" class="nav-link">
+                    <i class="fas fa-lightbulb"></i>Opportunities
+                </a></li>
+                <li><a href="#" data-view="analytics" class="nav-link">
+                    <i class="fas fa-brain"></i>ML Analytics
+                </a></li>
+            </ul>
+        </nav>
+
+        <main class="main-content">
+            <header class="header">
+                <h1 id="page-title">Executive Summary</h1>
+                <div class="header-controls">
+                    <select id="category-filter" class="filter-select">
+                        <option value="">All Categories</option>
+                    </select>
+                    <button id="refresh-btn" class="btn btn-primary">
+                        <i class="fas fa-sync-alt"></i> Refresh
+                    </button>
+                </div>
+            </header>
+
+            <div class="content-area">
+                <div id="executive-view" class="view active">
+                    <div class="metrics-grid">
+                        <div class="metric-card">
+                            <div class="metric-value" id="total-categories">-</div>
+                            <div class="metric-label">Categories</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value" id="total-products">-</div>
+                            <div class="metric-label">Products</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value" id="avg-price">-</div>
+                            <div class="metric-label">Avg Price</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value" id="top-category">-</div>
+                            <div class="metric-label">Top Category</div>
+                        </div>
+                    </div>
+                    
+                    <div class="charts-grid">
+                        <div class="chart-container">
+                            <h3>Category Performance</h3>
+                            <div id="category-chart"></div>
+                        </div>
+                        <div class="chart-container">
+                            <h3>Top Opportunities</h3>
+                            <div id="opportunities-list"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="market-view" class="view">
+                    <div class="charts-grid">
+                        <div class="chart-container full-width">
+                            <h3>Price vs Rating Analysis</h3>
+                            <div id="price-rating-chart"></div>
+                        </div>
+                        <div class="chart-container">
+                            <h3>Price Distribution</h3>
+                            <div id="price-distribution-chart"></div>
+                        </div>
+                        <div class="chart-container">
+                            <h3>Market Leaders</h3>
+                            <div id="market-leaders-list"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="opportunities-view" class="view">
+                    <div class="charts-grid">
+                        <div class="chart-container">
+                            <h3>Underpriced Products</h3>
+                            <div id="underpriced-products"></div>
+                        </div>
+                        <div class="chart-container">
+                            <h3>High Potential Products</h3>
+                            <div id="high-potential-products"></div>
+                        </div>
+                        <div class="chart-container full-width">
+                            <h3>Sentiment vs Performance</h3>
+                            <div id="sentiment-chart"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="analytics-view" class="view">
+                    <div class="charts-grid">
+                        <div class="chart-container">
+                            <h3>Model Performance</h3>
+                            <div id="model-metrics"></div>
+                        </div>
+                        <div class="chart-container">
+                            <h3>Feature Importance</h3>
+                            <div id="feature-importance-chart"></div>
+                        </div>
+                        <div class="chart-container full-width">
+                            <h3>Prediction Accuracy</h3>
+                            <div id="prediction-accuracy-chart"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div id="loading-overlay" class="loading-overlay">
+        <div class="loading-spinner">
+            <i class="fas fa-spinner fa-spin"></i>
+            <p>Loading data...</p>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
